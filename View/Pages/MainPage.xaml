@@ -29,6 +29,8 @@
                 SemanticProperties.Hint="Cambia de pagina"
                 Clicked="CambiarPantalla"
                 HorizontalOptions="Fill" />
+
+            <Label Text="Puntuacion Total:" IsVisible="False" x:Name="puntuacion" />
         </VerticalStackLayout>
    
 

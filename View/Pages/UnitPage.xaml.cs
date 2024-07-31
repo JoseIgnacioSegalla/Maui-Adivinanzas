@@ -6,6 +6,7 @@ public partial class UnitPage : ContentPage
 {
 	private int _intervalSeconds = 1;
 	private int _counter = 10;
+	private static int _totalPoints = 0;
 
 	public UnitPage(bool InitializeCountDown)
 	{
@@ -28,9 +29,12 @@ public partial class UnitPage : ContentPage
 
 			if (_counter == 0)
 			{
+				//Detener el timer
 				timer.Stop();
-				await Navigation.PopToRootAsync();
+				//Enviar la puntuacion total 
 				// Volver a la página principal
+				await Navigation.PopToRootAsync();
+				
 			}
 			_counter--;
 		};
@@ -40,11 +44,19 @@ public partial class UnitPage : ContentPage
 
 
 
-	private async void Print(object sender, EventArgs e)
+	private async void RefreshPage(object sender, EventArgs e)
 	{
 
-		/// Sumar 1 si es correcto, no sumar nada si no es correcto
+		// Sumar 1 si es correcto, no sumar nada si no es correcto
+		/*if (Labelnombre == nombrePelicula){
+			_totalPoints ++;
+		}
+		*/
+		// Agregarle +1 a la puntuacion total
+		_totalPoints ++;
+		Debug.WriteLine($"Puntuacion Total:{_totalPoints}");
 		await Navigation.PushAsync(new UnitPage(false));
+		
 	}
 
 }

@@ -14,7 +14,7 @@
         <HorizontalStackLayout HorizontalOptions="Center" Margin="20">
         <StackLayout HorizontalOptions="Center" WidthRequest="400" Margin="20">
         
-            <Button ClassId="opcion1" Text="Piratas del caribe" FontSize="Large" Margin="10" Clicked="Print"/>
+            <Button ClassId="opcion1" Text="Piratas del caribe" FontSize="Large" Margin="10" Clicked="RefreshPage"/>
             <Button ClassId="opcion2" Text="Piratas del mas alla" FontSize="Large" Margin="10" />
             <Button ClassId="opcion3" Text="Viaje del caribe" FontSize="Large" Margin="10"/>
         </StackLayout>
