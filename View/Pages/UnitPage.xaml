@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="P1.UnitPage"
+             Title="UnitPage"
+            >
+            
+    <VerticalStackLayout >
+        <Label 
+            Text="Adivina la pelicula"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+        <HorizontalStackLayout HorizontalOptions="Center" Margin="20">
+        <StackLayout HorizontalOptions="Center" WidthRequest="400" Margin="20">
+        
+            <Button ClassId="opcion1" Text="Piratas del caribe" FontSize="Large" Margin="10" Clicked="Print"/>
+            <Button ClassId="opcion2" Text="Piratas del mas alla" FontSize="Large" Margin="10" />
+            <Button ClassId="opcion3" Text="Viaje del caribe" FontSize="Large" Margin="10"/>
+        </StackLayout>
+        <StackLayout Margin="20">
+        
+        <Border Stroke="black">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="40,20,20,40"/>
+        </Border.StrokeShape>
+        
+        <Image Source="pdc.jpeg" Aspect="Fill" WidthRequest="400" HeightRequest="250"/>
+        </Border>
+
+
+         
+        </StackLayout>
+        </HorizontalStackLayout> 
+    
+
+    </VerticalStackLayout>
+
+</ContentPage>
