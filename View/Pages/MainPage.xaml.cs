@@ -1,4 +1,6 @@
-﻿namespace P1;
+﻿using P1.ViewModels;
+
+namespace P1;
 
 public partial class MainPage : ContentPage
 {
@@ -10,10 +12,12 @@ public partial class MainPage : ContentPage
 
 	}
 
+
+
 	private async void CambiarPantalla(object sender, EventArgs e)
 	{
 		
-		await Navigation.PushAsync(new UnitPage(true));
+		await Navigation.PushAsync(new UnitPage());
 
 	}
 

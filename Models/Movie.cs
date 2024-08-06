@@ -7,11 +7,13 @@ public record Movie
     public int Id { get; init; }
 
     [MaxLength(50)]
-    public string Name { get; init; }
+    public string? Name { get; init; }
 
     [MaxLength(50)]
-    public string UrlImage { get; init; }
+    public string? UrlImage { get; init; }
 
     [MaxLength(50)]
-    public IEnumerable<string> AlternativeNames { get; init; }
+    public string? AlternativeName1 { get; init; }
+    [MaxLength(50)]
+    public string? AlternativeName2 { get; init; }
 }

@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using P1.ViewModels;
 
 
 namespace P1;
@@ -24,10 +25,10 @@ public static class MauiProgram
 
 
 
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MovieViewModel>();
 		builder.Services.AddDbContext<MovieDbContext>();
-		builder.Services.AddTransient<MainPage>();
-
-
+		
 		using( var dbContext = new MovieDbContext() ){
 		
 			dbContext.Database.EnsureCreated();

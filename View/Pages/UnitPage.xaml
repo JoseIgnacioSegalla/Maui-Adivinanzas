@@ -2,38 +2,78 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="P1.UnitPage"
-             Title="UnitPage"
-            >
-            
-    <VerticalStackLayout >
-        <Label 
+             Title="Game page"
+             xmlns:local="clr-namespace:P1.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:MovieViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <VerticalStackLayout>
+        <Label
             Text="Adivina la pelicula"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <HorizontalStackLayout HorizontalOptions="Center" Margin="20">
-        <StackLayout HorizontalOptions="Center" WidthRequest="400" Margin="20">
-        
-            <Button ClassId="opcion1" Text="Piratas del caribe" FontSize="Large" Margin="10" Clicked="RefreshPage"/>
-            <Button ClassId="opcion2" Text="Piratas del mas alla" FontSize="Large" Margin="10" />
-            <Button ClassId="opcion3" Text="Viaje del caribe" FontSize="Large" Margin="10"/>
-        </StackLayout>
-        <StackLayout Margin="20">
-        
-        <Border Stroke="black">
-        <Border.StrokeShape>
-            <RoundRectangle CornerRadius="40,20,20,40"/>
-        </Border.StrokeShape>
-        
-        <Image Source="pdc.jpeg" Aspect="Fill" WidthRequest="400" HeightRequest="250"/>
-        </Border>
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               Margin="20">
+            <StackLayout HorizontalOptions="Center"
+                         WidthRequest="400"
+                         Margin="20">
+
+                <Button 
+                Command="{Binding BtnCountCommand}"
+                CommandParameter="1"
+                Text="{Binding Name}"
+                FontSize="Large"
+                Margin="10"
+                />
+                <Button 
+                Command="{Binding BtnCountCommand}"
+                CommandParameter="0"
+                        Text="{Binding AlternativeName1}"
+                        
+                        FontSize="Large"
+                        Margin="10"/>
+                <Button 
+                Command="{Binding BtnCountCommand}"
+                CommandParameter="0"
+                        Text="{Binding AlternativeName2}"
+                        FontSize="Large"
+                        Margin="10"/>
+            </StackLayout>
+            <StackLayout Margin="20">
+
+                <Border Stroke="black">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="40,20,20,40"/>
+                    </Border.StrokeShape>
+
+                    <Image Source="{Binding UrlImage}"
+                           Aspect="Fill"
+                           WidthRequest="400"
+                           HeightRequest="250"/>
+                </Border>
 
 
-         
-        </StackLayout>
-        </HorizontalStackLayout> 
-    
 
+            </StackLayout>
+
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               VerticalOptions="Center">
+            <Label Text="Puntos totales"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="Header"/>
+            <Label Text="{Binding Count}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="Header"/>
+        </HorizontalStackLayout>
+       
     </VerticalStackLayout>
 
 </ContentPage>

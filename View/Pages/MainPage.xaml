@@ -4,6 +4,7 @@
              x:Class="P1.MainPage"
              >
 
+       
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
@@ -24,14 +25,17 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
+
             <Button
                 Text="Jugar" 
                 SemanticProperties.Hint="Cambia de pagina"
                 Clicked="CambiarPantalla"
                 HorizontalOptions="Fill" />
+            
 
+        <!-- Agregar el puntaje total una vez terminado el tiempo  -->
             <Label Text="Puntuacion Total:" IsVisible="False" x:Name="puntuacion" />
         </VerticalStackLayout>
-   
+    
 
 </ContentPage>
