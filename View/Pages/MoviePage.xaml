@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="P1.UnitPage"
+             x:Class="P1.MoviePage"
              Title="Game page"
              xmlns:local="clr-namespace:P1.ViewModels">
 
     <ContentPage.BindingContext>
         <local:MovieViewModel/>
     </ContentPage.BindingContext>
-
 
     <VerticalStackLayout>
         <Label
@@ -62,17 +61,7 @@
             </StackLayout>
 
         </HorizontalStackLayout>
-        <HorizontalStackLayout HorizontalOptions="Center"
-                               VerticalOptions="Center">
-            <Label Text="Puntos totales"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   FontSize="Header"/>
-            <Label Text="{Binding Count}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   FontSize="Header"/>
-        </HorizontalStackLayout>
+       <!-- Cuando elijo un boton erroneo que me muestre un cartel que la seleccion fue erronea -->
        
     </VerticalStackLayout>
 

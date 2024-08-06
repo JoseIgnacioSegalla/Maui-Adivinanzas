@@ -2,40 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="P1.MainPage"
-             >
+             xmlns:local="clr-namespace:P1.ViewModels">
 
-       
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="adivinanza.jpeg"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+    <ContentPage.BindingContext>
+        <local:TotalViewModel/>
+    </ContentPage.BindingContext>
 
-            <Label
-                Text="Adivinador"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <Image
+            Source="adivinanza.jpeg"
+            HeightRequest="185"
+            Aspect="AspectFit"
+            SemanticProperties.Description="dot net bot in a race car number eight" />
 
-            <Label
-                Text="Bienvenido al juego de adivinanzas"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+        <Label
+            Text="Adivinador"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" />
 
+        <Label
+            Text="Bienvenido al juego de adivinanzas"
+            Style="{StaticResource SubHeadline}"
+            SemanticProperties.HeadingLevel="Level2"
+            SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
-            <Button
-                Text="Jugar" 
-                SemanticProperties.Hint="Cambia de pagina"
-                Clicked="CambiarPantalla"
-                HorizontalOptions="Fill" />
-            
+        <Button
+            Text="Jugar" 
+            SemanticProperties.Hint="Cambia de pagina"
+            Command="{Binding BtnChangeCommand}"
+            HorizontalOptions="Fill" />
 
-        <!-- Agregar el puntaje total una vez terminado el tiempo  -->
-            <Label Text="Puntuacion Total:" IsVisible="False" x:Name="puntuacion" />
-        </VerticalStackLayout>
-    
-
+        <!-- Agregar el puntaje total una vez terminado el tiempo o al terminar las peliculas -->
+        <Label Text="Puntuacion Total:" x:Name="puntuacion" />
+        <Label Text="{Binding Total}"/>
+    </VerticalStackLayout>
 </ContentPage>

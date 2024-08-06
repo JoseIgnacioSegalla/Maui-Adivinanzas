@@ -14,12 +14,7 @@ public partial class MainPage : ContentPage
 
 
 
-	private async void CambiarPantalla(object sender, EventArgs e)
-	{
-		
-		await Navigation.PushAsync(new UnitPage());
-
-	}
+	
 
 
 }

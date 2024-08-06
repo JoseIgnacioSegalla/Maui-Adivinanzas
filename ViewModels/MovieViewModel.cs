@@ -11,7 +11,9 @@ namespace P1.ViewModels;
 public partial class MovieViewModel : ObservableObject
 {
     [ObservableProperty]
-    private static int count = 0;
+    private bool visible = false;
+
+   
 
     [ObservableProperty]
     private string name = "Nombre";
@@ -29,6 +31,8 @@ public partial class MovieViewModel : ObservableObject
 
     private int Max = 0;
 
+    private static int count = 0;
+
     private readonly MovieDbContext _dbContext;
 
     private readonly List<Movie> movies;
@@ -38,40 +42,59 @@ public partial class MovieViewModel : ObservableObject
         
         var dbContext = new MovieDbContext();
         _dbContext = dbContext;
-
+        
         movies = _dbContext.Movies.ToList();
 
         Max = movies.Count();
 
-        Name = movies[index].Name;
-        AlternativeName1 = movies[index].AlternativeName1;
-        AlternativeName2 = movies[index].AlternativeName2;
-        UrlImage = movies[index].UrlImage;
+
+       
+
+         ChangeMovies();
+      
+        Visible = true;
 
     }
 
-    
 
     [RelayCommand]
-    public async void BtnCount(string Correct)
+    public void BtnCount(string Correct)
     {
+        
+        
         if(Correct == "1"){
-            Count ++;
+            count ++;
         }
+        
 
-        index ++;
 
-        if(Max > index){
+        if(Max > index)
+        {
+            ChangeMovies();
+            
+        }else{
+
+            Shell.Current.GoToAsync("//MainPage");
+
+            count = 0;
+            index = 0;
+
+            ChangeMovies();
+        }
+        
+    }
+
+    public void ChangeMovies()  
+    {
             Name = movies[index].Name;
             AlternativeName1 = movies[index].AlternativeName1;
             AlternativeName2 = movies[index].AlternativeName2;
             UrlImage = movies[index].UrlImage;
-        }else{
-           await Navigation.PopToRootAsync();
-        }
 
-       
-    	
+            index++;
     }
+
+
+    
 
 }
