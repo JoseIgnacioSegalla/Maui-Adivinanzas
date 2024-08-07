@@ -95,6 +95,28 @@ public partial class MovieViewModel : ObservableObject
     }
 
 
+
+    [ObservableProperty]
+    private  int counter = 10;
+
+    
+    public void StartCountdown()
+    {
+        var timer = Shell.Current.Dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromSeconds(2);
+        timer.Tick += (s, e) =>
+        {
+            if (Counter == 0)
+            {
+                timer.Stop();
+                
+            }
+            Counter--; 
+            Debug.WriteLine($"Tiempo actual: {Counter}");
+
+        };
+        timer.Start();
+    }
     
 
 }

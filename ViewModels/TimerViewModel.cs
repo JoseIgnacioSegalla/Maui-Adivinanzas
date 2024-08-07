@@ -15,24 +15,23 @@ public partial class TimerViewModel : ObservableObject
 	
     public TimerViewModel()
     {
-        StartCountdown();
+
     }
 
-    private async void StartCountdown()
+
+    public void StartCountdown()
 	{
-		var timer = Application.Current.Dispatcher.CreateTimer();
+		var timer = Shell.Current.Dispatcher.CreateTimer();
 		timer.Interval = TimeSpan.FromSeconds(_IntervalSeconds);
 		timer.Tick += (s, e) =>
 		{
 		
 			if (_Counter == 0)
 			{
-				//Detener el timer
+				
 				timer.Stop();
 				
-				//Enviar la puntuacion total 
-				// Volver a la página principal
-				
+			
 				
 			}
 			_Counter--;

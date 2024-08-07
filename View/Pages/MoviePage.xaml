@@ -7,6 +7,7 @@
 
     <ContentPage.BindingContext>
         <local:MovieViewModel/>
+        
     </ContentPage.BindingContext>
 
     <VerticalStackLayout>
@@ -32,7 +33,6 @@
                 Command="{Binding BtnCountCommand}"
                 CommandParameter="0"
                         Text="{Binding AlternativeName1}"
-                        
                         FontSize="Large"
                         Margin="10"/>
                 <Button 
@@ -62,7 +62,13 @@
 
         </HorizontalStackLayout>
        <!-- Cuando elijo un boton erroneo que me muestre un cartel que la seleccion fue erronea -->
-       
+        <StackLayout>
+        <!-- Ejemplo de enlace a la propiedad Counter -->
+        <Label Text="{Binding Counter}" 
+               FontSize="Large" 
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" />
+    </StackLayout>
     </VerticalStackLayout>
 
 </ContentPage>
