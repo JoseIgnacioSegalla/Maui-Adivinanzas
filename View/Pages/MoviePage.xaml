@@ -7,8 +7,9 @@
 
     <ContentPage.BindingContext>
         <local:MovieViewModel/>
-        
+
     </ContentPage.BindingContext>
+
 
     <VerticalStackLayout>
         <Label
@@ -22,25 +23,27 @@
                          WidthRequest="400"
                          Margin="20">
 
-                <Button 
-                Command="{Binding BtnCountCommand}"
-                CommandParameter="1"
-                Text="{Binding Name}"
-                FontSize="Large"
-                Margin="10"
-                />
-                <Button 
-                Command="{Binding BtnCountCommand}"
-                CommandParameter="0"
-                        Text="{Binding AlternativeName1}"
-                        FontSize="Large"
-                        Margin="10"/>
-                <Button 
-                Command="{Binding BtnCountCommand}"
-                CommandParameter="0"
-                        Text="{Binding AlternativeName2}"
-                        FontSize="Large"
-                        Margin="10"/>
+                <Button
+                    Command="{Binding BtnCountCommand}"
+                    CommandParameter="1"
+                    x:Name="Nombre"
+                    Text="{Binding Name}"
+                    FontSize="Large"
+                    Margin="10"/>
+                <Button
+                    Command="{Binding BtnCountCommand}"
+                    CommandParameter="0"
+                    Text="{Binding AlternativeName1}"
+                    x:Name="AlternativeName1"
+                    FontSize="Large"
+                    Margin="10"/>
+                <Button
+                    Command="{Binding BtnCountCommand}"
+                    CommandParameter="0"
+                    Text="{Binding AlternativeName2}"
+                    x:Name="AlternativeName2"
+                    FontSize="Large"
+                    Margin="10"/>
             </StackLayout>
             <StackLayout Margin="20">
 
@@ -61,14 +64,31 @@
             </StackLayout>
 
         </HorizontalStackLayout>
-       <!-- Cuando elijo un boton erroneo que me muestre un cartel que la seleccion fue erronea -->
+        <!-- Cuando elijo un boton erroneo que me muestre un cartel que la seleccion fue erronea -->
         <StackLayout>
-        <!-- Ejemplo de enlace a la propiedad Counter -->
-        <Label Text="{Binding Counter}" 
-               FontSize="Large" 
-               HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+            <!-- Ejemplo de enlace a la propiedad Counter -->
+            <Label Text="{Binding Counter}"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+            <Image x:Name="CorrectImage"
+                    Source="correct.png"
+                    IsVisible="{Binding CorrectImage}"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Image x:Name="IncorrectImage"
+                    Source="incorrect.png"
+                    IsVisible="{Binding IncorrectImage}"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, AutoSize, AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
     </VerticalStackLayout>
+
+
 
 </ContentPage>
