@@ -23,7 +23,7 @@ public partial class MovieViewModel : ObservableObject
     private string urlImage = "adivinanza.jpeg";
 
     [ObservableProperty]
-    private  int counter = 10;
+    private int counter = 10;
 
     [ObservableProperty]
     private bool correctImage = false;
@@ -38,24 +38,24 @@ public partial class MovieViewModel : ObservableObject
 
     private int Max = 0;
 
-    private static int count = 0;
+    private static int point = 0;
 
     private readonly MovieDbContext _dbContext;
 
     private readonly List<Movie> movies;
 
     public MovieViewModel()
-    { 
-        
+    {
+
         var dbContext = new MovieDbContext();
         _dbContext = dbContext;
-        
+
         movies = _dbContext.Movies.ToList();
 
         Max = movies.Count();
 
         ChangeMovies();
-      
+
         Visible = true;
 
 
@@ -65,61 +65,71 @@ public partial class MovieViewModel : ObservableObject
     [RelayCommand]
     public async Task BtnCount(string Correct)
     {
-        
 
-        if(Correct == "1"){
-            count ++;
+
+        if (Correct == "1")
+        {
+            point++;
             CorrectImage = true;
             IncorrectImage = false;
-          //si isvalid es true = Image (Correct)
+            //si isvalid es true = Image (Correct)
 
-        }else{
-           
+        }
+        else
+        {
+
             CorrectImage = false;
             IncorrectImage = true;
-            
-        //se isvalid es false = Image (Incorrect)
+
+            //se isvalid es false = Image (Incorrect)
 
         }
 
-        if(Max > index)
+        if (Max > index)
         {
             ChangeMovies();
             await Task.Delay(500);
             CorrectImage = false;
             IncorrectImage = false;
-             
-        }else{
-           
-            await Task.Delay(500);
-            await Shell.Current.GoToAsync("//MainPage");
 
+        }
+        else
+        {
+
+            await Task.Delay(500);
+            var navigationParameters = new Dictionary<string, object>
+        {
+            { "TotalScore", point }
+        };
+            await Shell.Current.GoToAsync("//MainPage");
+            TotalViewModel totalViewModel =  new();
+            totalViewModel.TotalScore = point;
             CorrectImage = false;
             IncorrectImage = false;
-            count = 0;
+            point = 0;
             index = 0;
             Counter = -1;
 
             ChangeMovies();
 
         }
-        
+
     }
 
-    public void ChangeMovies()  
+    public void ChangeMovies()
     {
-            Name = movies[index].Name;
-            AlternativeName1 = movies[index].AlternativeName1;
-            AlternativeName2 = movies[index].AlternativeName2;
-            UrlImage = movies[index].UrlImage;
+        Name = movies[index].Name;
+        AlternativeName1 = movies[index].AlternativeName1;
+        AlternativeName2 = movies[index].AlternativeName2;
+        UrlImage = movies[index].UrlImage;
 
-            index++;
+        index++;
     }
 
-    
 
-   
-    
+
+
+
     public void StartCountdown(int MaxCount)
     {
         Counter = MaxCount;
@@ -132,9 +142,9 @@ public partial class MovieViewModel : ObservableObject
             {
                 timer.Stop();
                 Shell.Current.GoToAsync("//MainPage");
-                
+
             }
-            Counter--; 
+            Counter--;
             Debug.WriteLine($"Tiempo actual: {Counter}");
 
         };

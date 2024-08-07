@@ -19,7 +19,7 @@ public partial class MoviePage : ContentPage
     {
         base.OnAppearing();
         var viewModel = (MovieViewModel)BindingContext;
-        viewModel.StartCountdown(10);
+        viewModel.StartCountdown(20);
 
     }
     

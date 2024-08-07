@@ -12,7 +12,7 @@ public partial class TotalViewModel : ObservableObject
 {
 
     [ObservableProperty]
-    private int total = 0;
+    private int totalScore = 0;
 
     [RelayCommand]
     public async Task BtnChangeAsync()

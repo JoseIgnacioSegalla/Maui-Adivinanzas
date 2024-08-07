@@ -11,16 +11,18 @@
     <VerticalStackLayout
         Padding="30,0"
         Spacing="25">
-        <Image
-            Source="adivinanza.jpeg"
-            HeightRequest="185"
-            Aspect="AspectFit"
-            SemanticProperties.Description="dot net bot in a race car number eight" />
+        
 
         <Label
             Text="Adivinador"
             Style="{StaticResource Headline}"
             SemanticProperties.HeadingLevel="Level1" />
+        
+        <Image
+            Source="adivinanza.jpeg"
+            HeightRequest="185"
+            Aspect="AspectFit"
+            SemanticProperties.Description="dot net bot in a race car number eight" />
 
         <Label
             Text="Bienvenido al juego de adivinanzas"
@@ -35,7 +37,10 @@
             HorizontalOptions="Fill" />
 
         <!-- Agregar el puntaje total una vez terminado el tiempo o al terminar las peliculas -->
-        <Label Text="Puntuacion Total:" x:Name="puntuacion" />
-        <Label Text="{Binding Total}"/>
+        <HorizontalStackLayout >
+        <Label FontSize="Header" Text="Puntuacion Total:" x:Name="puntuacion" />
+        <Label FontSize="Header" Text="{Binding TotalScore}"/>
+        </HorizontalStackLayout>
+        
     </VerticalStackLayout>
 </ContentPage>
