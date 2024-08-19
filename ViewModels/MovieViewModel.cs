@@ -7,8 +7,12 @@ namespace P1.ViewModels;
 
 public partial class MovieViewModel : ObservableObject
 {
+
+
+
+
     [ObservableProperty]
-    private bool visible = false;
+    private int totalScore = 0;
 
     [ObservableProperty]
     private string name = "Nombre";
@@ -29,16 +33,14 @@ public partial class MovieViewModel : ObservableObject
     private bool correctImage = false;
 
     [ObservableProperty]
-
     private bool incorrectImage = false;
-
 
 
     private static int index = 0;
 
     private int Max = 0;
 
-    private static int point = 0;
+    private static int Score = 0;
 
     private readonly MovieDbContext _dbContext;
 
@@ -46,19 +48,29 @@ public partial class MovieViewModel : ObservableObject
 
     public MovieViewModel()
     {
-
         var dbContext = new MovieDbContext();
+
         _dbContext = dbContext;
 
         movies = _dbContext.Movies.ToList();
 
-        Max = movies.Count();
+        Max = movies.Count() - 1;
 
-        ChangeMovies();
+    }
 
-        Visible = true;
+    [RelayCommand]
+    public void On()
+    {   
+        index = 0;
+        Score = 0;
+        StartCountdown(20);
+        ShowMovie();
+    }
 
-
+    [RelayCommand]
+    public async Task BtnChangeAsync()
+    {
+        await Shell.Current.GoToAsync("//MoviePage");
     }
 
 
@@ -67,12 +79,14 @@ public partial class MovieViewModel : ObservableObject
     {
 
 
-        if (Correct == "1")
+        if (Correct == movies[index].Name)
         {
-            point++;
+            Score++;
+            
+
+
             CorrectImage = true;
             IncorrectImage = false;
-            //si isvalid es true = Image (Correct)
 
         }
         else
@@ -80,14 +94,15 @@ public partial class MovieViewModel : ObservableObject
 
             CorrectImage = false;
             IncorrectImage = true;
-
-            //se isvalid es false = Image (Incorrect)
-
         }
+
 
         if (Max > index)
         {
-            ChangeMovies();
+            index++;
+
+            ShowMovie();
+
             await Task.Delay(500);
             CorrectImage = false;
             IncorrectImage = false;
@@ -97,42 +112,73 @@ public partial class MovieViewModel : ObservableObject
         {
 
             await Task.Delay(500);
-            var navigationParameters = new Dictionary<string, object>
-        {
-            { "TotalScore", point }
-        };
             await Shell.Current.GoToAsync("//MainPage");
-            TotalViewModel totalViewModel =  new();
-            totalViewModel.TotalScore = point;
+
             CorrectImage = false;
             IncorrectImage = false;
-            point = 0;
             index = 0;
             Counter = -1;
-
-            ChangeMovies();
-
+            ShowMovie();
         }
 
     }
 
-    public void ChangeMovies()
+    [RelayCommand]
+    public void TotalCounter()
     {
-        Name = movies[index].Name;
-        AlternativeName1 = movies[index].AlternativeName1;
-        AlternativeName2 = movies[index].AlternativeName2;
-        UrlImage = movies[index].UrlImage;
+        TotalScore = Score;
+       
+    }
+    public void ShowMovie()
+    {
 
-        index++;
+        var random = new Random();
+        int randomNumber = random.Next(0, 3);
+
+        if (movies != null)
+        {
+
+
+            if (randomNumber == 0)
+            {
+
+                Name = movies[index].Name;
+                AlternativeName1 = movies[index].AlternativeName1;
+                AlternativeName2 = movies[index].AlternativeName2;
+
+
+            }
+            else if (randomNumber == 1)
+            {
+                Name = movies[index].AlternativeName1;
+                AlternativeName1 = movies[index].AlternativeName2;
+                AlternativeName2 = movies[index].Name;
+
+            }
+            else
+            {
+                Name = movies[index].AlternativeName2;
+                AlternativeName1 = movies[index].Name;
+                AlternativeName2 = movies[index].AlternativeName1;
+
+
+            }
+
+            UrlImage = movies[index].UrlImage;
+
+        }
+
+
     }
 
+   
 
 
-
-
-    public void StartCountdown(int MaxCount)
+    [RelayCommand]
+    public void StartCountdown(int max)
     {
-        Counter = MaxCount;
+
+        Counter = max;
 
         var timer = Shell.Current.Dispatcher.CreateTimer();
         timer.Interval = TimeSpan.FromSeconds(1);
@@ -145,7 +191,7 @@ public partial class MovieViewModel : ObservableObject
 
             }
             Counter--;
-            Debug.WriteLine($"Tiempo actual: {Counter}");
+            
 
         };
         timer.Start();

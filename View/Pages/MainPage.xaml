@@ -1,46 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="P1.MainPage"
              xmlns:local="clr-namespace:P1.ViewModels">
 
     <ContentPage.BindingContext>
-        <local:TotalViewModel/>
+        <local:MovieViewModel/>
     </ContentPage.BindingContext>
-
+    <ContentPage.Behaviors>
+         <toolkit:EventToCommandBehavior
+        EventName="Appearing"
+        Command="{Binding TotalCounterCommand}"
+        />
+    </ContentPage.Behaviors> 
     <VerticalStackLayout
         Padding="30,0"
         Spacing="25">
-        
+
 
         <Label
             Text="Adivinador"
             Style="{StaticResource Headline}"
-            SemanticProperties.HeadingLevel="Level1" />
-        
+            SemanticProperties.HeadingLevel="Level1"/>
+
         <Image
             Source="adivinanza.jpeg"
             HeightRequest="185"
             Aspect="AspectFit"
-            SemanticProperties.Description="dot net bot in a race car number eight" />
+            SemanticProperties.Description="dot net bot in a race car number eight"/>
 
         <Label
             Text="Bienvenido al juego de adivinanzas"
             Style="{StaticResource SubHeadline}"
             SemanticProperties.HeadingLevel="Level2"
-            SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+            SemanticProperties.Description="Welcome to dot net Multi platform App U I"/>
 
         <Button
-            Text="Jugar" 
+            Text="Jugar"
             SemanticProperties.Hint="Cambia de pagina"
             Command="{Binding BtnChangeCommand}"
-            HorizontalOptions="Fill" />
+            HorizontalOptions="Fill"/>
 
         <!-- Agregar el puntaje total una vez terminado el tiempo o al terminar las peliculas -->
-        <HorizontalStackLayout >
-        <Label FontSize="Header" Text="Puntuacion Total:" x:Name="puntuacion" />
-        <Label FontSize="Header" Text="{Binding TotalScore}"/>
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+            <Label FontSize="Header"
+                    Text="Puntuacion:"/>
+            <Label FontSize="Header"
+                    Text="{Binding TotalScore}"/>
         </HorizontalStackLayout>
-        
+
     </VerticalStackLayout>
 </ContentPage>
